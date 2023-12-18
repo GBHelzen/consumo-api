@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/api-exemplo', ApiController::class);
+Route::get('/artistas', [ApiController::class, 'artistas']);
+Route::get('/artes', [ApiController::class, 'artes']);
