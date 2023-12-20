@@ -11,5 +11,14 @@ class Arte extends Model
     use HasFactory, SoftDeletes;
 
     protected $primaryKey = 'objectID';
+    
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'artist_id' => 'integer'
+    ];
     protected $guarded = [];
 }

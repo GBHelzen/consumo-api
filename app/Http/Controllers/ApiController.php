@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Arte;
 use App\Models\Artista;
 use App\Services\MuseumofModernArt\ArtistService;
 use App\Services\MuseumofModernArt\ArtService;
 use App\Services\MuseumofModernArt\Entities\Artist;
 use App\Services\MuseumofModernArt\Endpoints\Artists;
+use App\Services\MuseumofModernArt\Entities\Art;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -14,6 +16,8 @@ class ApiController extends Controller
 {
     public Artista $artista;
     public array $data;
+    public int $maxArtist;
+    public int $maxArt;
     public function artistas()
     {  
         $x = 0;
@@ -24,8 +28,10 @@ class ApiController extends Controller
             ->artists()
             ->get();
 
+        $maxArtist = $json->count();
+
         // Salvando no banco de dados
-        while ($x < 15243) {
+        while ($x < $maxArtist) {
             $artista = new Artista;
             $artista->constituentID     = $json[$x]->constituentID;
             $artista->displayName       = $json[$x]->displayName;
@@ -50,16 +56,20 @@ class ApiController extends Controller
     public function artes()
     {
         $x = 0;
-
+        
         $service = new ArtService();
         // Artworks
         $json = $service
-            ->arts()
-            ->get();
+        ->arts()
+        ->get();
+        
+        $maxArt = $json->count();
+        
+        dd($json->where('objectID', '==', 2));
         
         // Salvando no banco de dados
-        while ($x < $x) {
-            $art = new Artista;
+        while ($x < $maxArt) {
+            $art = new Arte;
             $art->objectID          = $json[$x]->objectID;
             $art->title             = $json[$x]->title;
             $art->artist_id         = $json[$x]->artist_id;
@@ -67,7 +77,7 @@ class ApiController extends Controller
             $art->medium            = $json[$x]->medium;
             $art->dimensions        = $json[$x]->dimensions;
             $art->creditLine        = $json[$x]->creditLine;
-            $art->acessionNumber    = $json[$x]->acessionNumber;
+            $art->accessionNumber   = $json[$x]->accessionNumber;
             $art->classification    = $json[$x]->classification;
             $art->department        = $json[$x]->department;
             $art->dateAcquired      = $json[$x]->dateAcquired;
@@ -87,10 +97,10 @@ class ApiController extends Controller
             $x = $x + 1;
         }
         
-        // Busca todas as artes (cuidado, muito pesado, pode não carregar)
+        // Busca todas as artes
         //return $json->all();
 
-        // Busca baseado no ObjectID (cuidado, muito pesado, pode não carregar)
-        dd ($json->where('objectID', '==', 2));
+        // Busca baseado no ObjectID
+        return $json->where('objectID', '==', 2);
     }
 }
