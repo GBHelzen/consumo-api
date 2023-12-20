@@ -4,7 +4,7 @@ namespace App\Services\MuseumofModernArt\Entities;
 
 class Artist
 {
-    public int $constituentID;
+    public string|int $constituentID;
     public string $displayName;
     public string|null $artistBio;
     public string|null $nationality;

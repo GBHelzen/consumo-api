@@ -14,7 +14,7 @@ class ArtService
 
     public function __construct()
     {
-        $this->api = Http::connectTimeout(120)->timeout(120)
+        $this->api = Http::connectTimeout(1200)->timeout(1200)
         ->withHeaders([
             '',
         ]);

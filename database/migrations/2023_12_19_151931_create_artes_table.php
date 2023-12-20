@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('artes', function (Blueprint $table) {
+            $table->id();
             $table->integer('objectID');
-            $table->primary('objectID');
             $table->string('title');
-            $table->unsignedBigInteger('artist_id');
+            $table->string('constituentID');
             // $table->foreign('artist')->references('displayName')->on('artists');
-            $table->foreign('artist_id')->references('constituentID')->on('artistas');
+            $table->foreign('constituentID')->references('constituentID')->on('artistas');
             // $table->foreign('artistBio')->references('artistBio')->on('artists');
             // $table->foreign('nationality')->references('nationality')->on('artists');
             // $table->foreign('beginDate')->references('beginDate')->on('artists');
@@ -35,14 +35,14 @@ return new class extends Migration
             $table->string('url')->nullable();
             $table->string('thumbnailUrl')->nullable();
             $table->float('circumference')->nullable();
-            $table->float('depth');
-            $table->float('diameter');
-            $table->float('height');
-            $table->float('length');
-            $table->float('weight');
-            $table->float('width');
+            $table->float('depth')->nullable();
+            $table->float('diameter')->nullable();
+            $table->float('height')->nullable();
+            $table->float('length')->nullable();
+            $table->float('weight')->nullable();
+            $table->float('width')->nullable();
             $table->float('seatHeight')->nullable();
-            $table->integer('duration');
+            $table->integer('duration')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

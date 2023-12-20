@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Http;
 class ApiController extends Controller
 {
     public Artista $artista;
+    public Arte $arte;
     public array $data;
     public int $maxArtist;
     public int $maxArt;
@@ -64,36 +65,37 @@ class ApiController extends Controller
         ->get();
         
         $maxArt = $json->count();
-        
-        dd($json->where('objectID', '==', 2));
-        
+
+        //dd($json->where('objectID', '==', 81));
+        dd(implode(', ', $json[2611]->constituentID));
+
         // Salvando no banco de dados
         while ($x < $maxArt) {
-            $art = new Arte;
-            $art->objectID          = $json[$x]->objectID;
-            $art->title             = $json[$x]->title;
-            $art->artist_id         = $json[$x]->artist_id;
-            $art->date              = $json[$x]->date;
-            $art->medium            = $json[$x]->medium;
-            $art->dimensions        = $json[$x]->dimensions;
-            $art->creditLine        = $json[$x]->creditLine;
-            $art->accessionNumber   = $json[$x]->accessionNumber;
-            $art->classification    = $json[$x]->classification;
-            $art->department        = $json[$x]->department;
-            $art->dateAcquired      = $json[$x]->dateAcquired;
-            $art->cataloged         = $json[$x]->cataloged;
-            $art->url               = $json[$x]->url;
-            $art->thumbnailUrl      = $json[$x]->thumbnailUrl;
-            $art->circumference     = $json[$x]->circumference;
-            $art->depth             = $json[$x]->depth;
-            $art->diameter          = $json[$x]->diameter;
-            $art->height            = $json[$x]->height;
-            $art->length            = $json[$x]->length;
-            $art->weight            = $json[$x]->weight;
-            $art->width             = $json[$x]->width;
-            $art->seatHeight        = $json[$x]->seatHeight;
-            $art->duration          = $json[$x]->duration;
-            $art->save();
+            $arte = new Arte;
+            $arte->objectID          = $json[$x]->objectID;
+            $arte->title             = $json[$x]->title;
+            $arte->constituentID     = implode(', ', $json[$x]->constituentID);
+            $arte->date              = $json[$x]->date;
+            $arte->medium            = $json[$x]->medium;
+            $arte->dimensions        = $json[$x]->dimensions;
+            $arte->creditLine        = $json[$x]->creditLine;
+            $arte->accessionNumber   = $json[$x]->accessionNumber;
+            $arte->classification    = $json[$x]->classification;
+            $arte->department        = $json[$x]->department;
+            $arte->dateAcquired      = $json[$x]->dateAcquired;
+            $arte->cataloged         = $json[$x]->cataloged;
+            $arte->url               = $json[$x]->url;
+            $arte->thumbnailUrl      = $json[$x]->thumbnailUrl;
+            $arte->circumference     = $json[$x]->circumference;
+            $arte->depth             = $json[$x]->depth;
+            $arte->diameter          = $json[$x]->diameter;
+            $arte->height            = $json[$x]->height;
+            $arte->length            = $json[$x]->length;
+            $arte->weight            = $json[$x]->weight;
+            $arte->width             = $json[$x]->width;
+            $arte->seatHeight        = $json[$x]->seatHeight;
+            $arte->duration          = $json[$x]->duration;
+            $arte->save();
             $x = $x + 1;
         }
         
@@ -101,6 +103,6 @@ class ApiController extends Controller
         //return $json->all();
 
         // Busca baseado no ObjectID
-        return $json->where('objectID', '==', 2);
+        dd($json->where('objectID', '==', 2611));
     }
 }

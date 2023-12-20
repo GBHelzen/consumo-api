@@ -6,7 +6,7 @@ class Art
 {
     public int $objectID;
     public string $title;
-    public int|array $artist_id;
+    public string|int|array $constituentID;
     public string|null $date;
     public string|null $medium;
     public string|null $dimensions;
@@ -30,7 +30,7 @@ class Art
     public function __construct(array $data)
     {
         $this->title            = data_get($data, 'Title');
-        $this->artist_id        = data_get($data, 'ConstituentID');
+        $this->constituentID    = data_get($data, 'ConstituentID');
         $this->date             = data_get($data, 'Date');
         $this->medium           = data_get($data, 'Medium');
         $this->dimensions       = data_get($data, 'Dimensions');
