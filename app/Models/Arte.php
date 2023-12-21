@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Arte extends Model
@@ -20,5 +21,11 @@ class Arte extends Model
     protected $casts = [
         'artist_id' => 'integer'
     ];
+
     protected $guarded = [];
+
+    public function artistas(): BelongsToMany
+    {
+        return $this->belongsToMany(Artista::class, 'arte_artista', 'object_id', 'constituentID');
+    }
 }

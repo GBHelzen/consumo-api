@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('artes', function (Blueprint $table) {
             $table->id();
-            $table->integer('objectID');
+            $table->integer('objectID')->unique();
             $table->string('title');
             $table->string('constituentID');
             // $table->foreign('artist')->references('displayName')->on('artists');
-            $table->foreign('constituentID')->references('constituentID')->on('artistas');
+            // $table->foreign('constituentID')->references('constituentID')->on('artistas');
             // $table->foreign('artistBio')->references('artistBio')->on('artists');
             // $table->foreign('nationality')->references('nationality')->on('artists');
             // $table->foreign('beginDate')->references('beginDate')->on('artists');

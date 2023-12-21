@@ -28,27 +28,30 @@ class ApiController extends Controller
         $json = $service
             ->artists()
             ->get();
-
-        $maxArtist = $json->count();
-
-        // Salvando no banco de dados
-        while ($x < $maxArtist) {
-            $artista = new Artista;
-            $artista->constituentID     = $json[$x]->constituentID;
-            $artista->displayName       = $json[$x]->displayName;
-            $artista->artistBio         = $json[$x]->artistBio;
-            $artista->nationality       = $json[$x]->nationality;
-            $artista->gender            = $json[$x]->gender;
-            $artista->beginDate         = $json[$x]->beginDate;
-            $artista->endDate           = $json[$x]->endDate;
-            $artista->wikiQID           = $json[$x]->wikiQID;
-            $artista->ULAN              = $json[$x]->ULAN;
-            $artista->save();
-            $x = $x + 1;
-        }
+        
+            $maxArtist = $json->count();
+            
+            // Salvando no banco de dados
+            while ($x < $maxArtist) {
+                foreach ($json[$x] as $artista) {
+                    $artista = new Artista;
+                    $artista->constituentID     = $json[$x]->constituentID;
+                    $artista->displayName       = $json[$x]->displayName;
+                    $artista->artistBio         = $json[$x]->artistBio;
+                    $artista->nationality       = $json[$x]->nationality;
+                    $artista->gender            = $json[$x]->gender;
+                    $artista->beginDate         = $json[$x]->beginDate;
+                    $artista->endDate           = $json[$x]->endDate;
+                    $artista->wikiQID           = $json[$x]->wikiQID;
+                    $artista->ULAN              = $json[$x]->ULAN;
+                    $artista->save();
+                    $x = $x + 1;
+                }
+            }
+        //dd($artista);
 
         // Busca todos os artistas
-        return ($json->all());
+        return ($artista->all());
         
         // Busca baseado no ConstituentID < 10
         //dd($json->where('constituentID', '==', 1));
@@ -67,36 +70,39 @@ class ApiController extends Controller
         $maxArt = $json->count();
 
         //dd($json->where('objectID', '==', 81));
-        dd(implode(', ', $json[2611]->constituentID));
+        // dd(implode(', ', $json[2611]->constituentID));
+        // dd($json[130889]);
 
         // Salvando no banco de dados
         while ($x < $maxArt) {
-            $arte = new Arte;
-            $arte->objectID          = $json[$x]->objectID;
-            $arte->title             = $json[$x]->title;
-            $arte->constituentID     = implode(', ', $json[$x]->constituentID);
-            $arte->date              = $json[$x]->date;
-            $arte->medium            = $json[$x]->medium;
-            $arte->dimensions        = $json[$x]->dimensions;
-            $arte->creditLine        = $json[$x]->creditLine;
-            $arte->accessionNumber   = $json[$x]->accessionNumber;
-            $arte->classification    = $json[$x]->classification;
-            $arte->department        = $json[$x]->department;
-            $arte->dateAcquired      = $json[$x]->dateAcquired;
-            $arte->cataloged         = $json[$x]->cataloged;
-            $arte->url               = $json[$x]->url;
-            $arte->thumbnailUrl      = $json[$x]->thumbnailUrl;
-            $arte->circumference     = $json[$x]->circumference;
-            $arte->depth             = $json[$x]->depth;
-            $arte->diameter          = $json[$x]->diameter;
-            $arte->height            = $json[$x]->height;
-            $arte->length            = $json[$x]->length;
-            $arte->weight            = $json[$x]->weight;
-            $arte->width             = $json[$x]->width;
-            $arte->seatHeight        = $json[$x]->seatHeight;
-            $arte->duration          = $json[$x]->duration;
-            $arte->save();
-            $x = $x + 1;
+            foreach($json[$x] as $arte) {
+                $arte = new Arte;
+                $arte->objectID          = $json[$x]->objectID;
+                $arte->title             = $json[$x]->title;
+                $arte->constituentID     = implode(', ', $json[$x]->constituentID);
+                $arte->date              = $json[$x]->date;
+                $arte->medium            = $json[$x]->medium;
+                $arte->dimensions        = $json[$x]->dimensions;
+                $arte->creditLine        = $json[$x]->creditLine;
+                $arte->accessionNumber   = $json[$x]->accessionNumber;
+                $arte->classification    = $json[$x]->classification;
+                $arte->department        = $json[$x]->department;
+                $arte->dateAcquired      = $json[$x]->dateAcquired;
+                $arte->cataloged         = $json[$x]->cataloged;
+                $arte->url               = $json[$x]->url;
+                $arte->thumbnailUrl      = $json[$x]->thumbnailUrl;
+                $arte->circumference     = $json[$x]->circumference;
+                $arte->depth             = $json[$x]->depth;
+                $arte->diameter          = $json[$x]->diameter;
+                $arte->height            = $json[$x]->height;
+                $arte->length            = $json[$x]->length;
+                $arte->weight            = $json[$x]->weight;
+                $arte->width             = $json[$x]->width;
+                $arte->seatHeight        = $json[$x]->seatHeight;
+                $arte->duration          = $json[$x]->duration;
+                $arte->save();
+                $x = $x + 1;
+            }
         }
         
         // Busca todas as artes

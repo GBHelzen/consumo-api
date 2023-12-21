@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('artistas', function (Blueprint $table) {
-            $table->string('constituentID');
-            $table->primary('constituentID');
+            $table->id();
+            $table->integer('constituentID')->unique();
             $table->string('displayName');
             $table->string('artistBio')->nullable();
             $table->string('nationality')->nullable();
