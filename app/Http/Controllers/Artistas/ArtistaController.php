@@ -53,9 +53,9 @@ class ArtistaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Artista $artista)
+    public function show(Artista $artista, string|int $constituentID)
     {
-        return Artista::find(3);
+        return Artista::find($constituentID);
     }
 
     /**

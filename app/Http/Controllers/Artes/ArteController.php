@@ -73,9 +73,9 @@ class ArteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Arte $arte)
+    public function show(Arte $arte, string|int $objectID)
     {
-        return Arte::find(3);
+        return Arte::find($objectID);
     }
 
     /**
