@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Artistas;
 
+use App\Http\Controllers\Controller;
 use App\Models\Artista;
 use App\Services\MuseumofModernArt\ArtistService;
 use Illuminate\Http\Request;
