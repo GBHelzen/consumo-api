@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('arte_artista', function (Blueprint $table) {
             $table->id();
-            $table->integer('artista_id');
-            $table->integer('arte_id');
+            $table->integer('artista_constituentID');
+            $table->integer('arte_objectID');
             
-            $table->foreign('artista_id')->references('constituentID')->on('artistas');
-            $table->foreign('arte_id')->references('objectID')->on('artes');
+            $table->foreign('artista_constituentID')->references('constituentID')->on('artistas');
+            $table->foreign('arte_objectID')->references('objectID')->on('artes');
 
             $table->softDeletes();
             $table->timestamps();

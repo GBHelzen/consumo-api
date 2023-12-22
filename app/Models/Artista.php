@@ -14,8 +14,8 @@ class Artista extends Model
     protected $primaryKey = 'constituentID';
     protected $guarded = [];
 
-    protected function artes(): BelongsToMany
+    public function artes(): BelongsToMany
     {
-        return $this->belongsToMany(Arte::class, 'arte_artista', 'constituentID', 'objectID');
+        return $this->belongsToMany(Arte::class);
     }
 }

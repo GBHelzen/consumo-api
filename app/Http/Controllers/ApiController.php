@@ -29,7 +29,8 @@ class ApiController extends Controller
             ->artists()
             ->get();
         
-            $maxArtist = $json->count();
+            
+            ($maxArtist = $json->count());
             
             // Salvando no banco de dados
             while ($x < $maxArtist) {
@@ -48,6 +49,7 @@ class ApiController extends Controller
                     $x = $x + 1;
                 }
             }
+
         //dd($artista);
 
         // Busca todos os artistas
@@ -59,7 +61,7 @@ class ApiController extends Controller
 
     public function artes()
     {
-        $x = 0;
+        $x = 128987;
         
         $service = new ArtService();
         // Artworks
@@ -101,6 +103,11 @@ class ApiController extends Controller
                 $arte->seatHeight        = $json[$x]->seatHeight;
                 $arte->duration          = $json[$x]->duration;
                 $arte->save();
+
+                foreach($json[$x]->constituentID as $constituentID)
+                {
+                    $arte->artistas()->attach($constituentID);
+                }
                 $x = $x + 1;
             }
         }
@@ -111,4 +118,12 @@ class ApiController extends Controller
         // Busca baseado no ObjectID
         dd($json->where('objectID', '==', 2611));
     }
+    // $shop = Shop::find($shop_id);
+    // $shop->products()->attach($product_id);
+    // public function pivot()
+    // {
+    //     $artista = Artista::find($artista_id);
+    //     $artista->artes()->attach($arte_id);
+
+    // }
 }

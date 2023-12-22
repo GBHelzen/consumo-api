@@ -26,6 +26,6 @@ class Arte extends Model
 
     public function artistas(): BelongsToMany
     {
-        return $this->belongsToMany(Artista::class, 'arte_artista', 'object_id', 'constituentID');
+        return $this->belongsToMany(Artista::class);
     }
 }

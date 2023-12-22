@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('artes', function (Blueprint $table) {
             $table->id();
             $table->integer('objectID')->unique();
-            $table->string('title');
-            $table->string('constituentID');
+            $table->string('title', 3000);
+            $table->string('constituentID', 3000);
             // $table->foreign('artist')->references('displayName')->on('artists');
             // $table->foreign('constituentID')->references('constituentID')->on('artistas');
             // $table->foreign('artistBio')->references('artistBio')->on('artists');
@@ -24,9 +24,9 @@ return new class extends Migration
             // $table->foreign('endDate')->references('endDate')->on('artists');
             // $table->foreign('gender')->references('gender')->on('artists');
             $table->string('date')->nullable();
-            $table->string('medium')->nullable();
-            $table->string('dimensions')->nullable();
-            $table->string('creditLine')->nullable();
+            $table->string('medium', 3000)->nullable();
+            $table->string('dimensions', 3000)->nullable();
+            $table->string('creditLine', 3000)->nullable();
             $table->string('accessionNumber');
             $table->string('classification')->nullable();
             $table->string('department');
