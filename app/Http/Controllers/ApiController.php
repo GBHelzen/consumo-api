@@ -28,8 +28,13 @@ class ApiController extends Controller
         $json = $service
             ->artists()
             ->get();
+
+            // Retorna as artes do artista com constituentID 3
+            // $artes = Artista::find(3)->artes()->get();
+            // return $artes;
+            return Artista::get();
+
         
-            
             ($maxArtist = $json->count());
             
             // Salvando no banco de dados
@@ -61,7 +66,7 @@ class ApiController extends Controller
 
     public function artes()
     {
-        $x = 128987;
+        $x = 0;
         
         $service = new ArtService();
         // Artworks
