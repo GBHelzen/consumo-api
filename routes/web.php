@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\ApiController;
-use App\Http\Controllers\ArteController;
-use App\Http\Controllers\ArtistaController;
+use App\Http\Controllers\Artes\ArteController;
+use App\Http\Controllers\Artistas\ArtistaController;
 use Illuminate\Support\Facades\Route;
 
 /*
