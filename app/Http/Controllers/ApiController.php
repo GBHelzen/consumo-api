@@ -123,12 +123,4 @@ class ApiController extends Controller
         // Busca baseado no ObjectID
         dd($json->where('objectID', '==', 2611));
     }
-    // $shop = Shop::find($shop_id);
-    // $shop->products()->attach($product_id);
-    // public function pivot()
-    // {
-    //     $artista = Artista::find($artista_id);
-    //     $artista->artes()->attach($arte_id);
-
-    // }
 }

@@ -55,7 +55,13 @@ class ArtistaController extends Controller
      */
     public function show(Artista $artista, string|int $constituentID)
     {
-        return Artista::find($constituentID);
+        $artist = Artista::find($constituentID);
+        // dump($artist);
+        $req = [$artist->displayName, (' ') , $artist->constituentID, (' '), $artist->nationality];
+        foreach ($req as $artist)
+        {
+            echo $artist;
+        }
     }
 
     /**
