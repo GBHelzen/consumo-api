@@ -19,18 +19,10 @@ class ArtistaController extends Controller
         return view('artistas.index',
         [
             'artistas' => Artista::where('displayName', 'ilike', '%' . $this->search . '%')
-                ->orderBy('constituentID', 'asc')->paginate(10),
+                ->orderBy('constituentID', 'asc')->paginate(5),
         ]
         );
     }
-    
-    // return view(
-    //     'admin.documentos.index-documentos',
-    //     [
-    //         'documentos' => Documento::where('nome_arquivo', 'ilike', '%' . $this->search .  '%')
-    //             ->orderBy('nome_arquivo', 'asc')->paginate(10),
-    //     ]
-    // )->layout('layouts.admin');
 
 
     /**
