@@ -25,11 +25,11 @@ Route::get('/', function () {
 // Route::get('/artes', [ApiController::class, 'artes']);
 
 // Controller Artista
-Route::get('/artistas', [ArtistaController::class, 'index']);
+Route::get('/artistas', [ArtistaController::class, 'index'])->name('artistas.index');
 Route::get('/artistas/create', [ArtistaController::class, 'store']);
-Route::get('/artistas/{constituentID}', [ArtistaController::class, 'show']);
+Route::get('/artistas/{constituentID}', [ArtistaController::class, 'show'])->name('artistas.show');
 
 // Controller Artes
-Route::get('/artes', [ArteController::class, 'index']);
+Route::get('/artes', [ArteController::class, 'index'])->name('artes.index');
 Route::get('/artes/create', [ArteController::class, 'store']);
-Route::get('/artes/{objectID}', [ArteController::class, 'show']);
+Route::get('/artes/{objectID}', [ArteController::class, 'show'])->name('artes.show');

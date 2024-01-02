@@ -9,13 +9,29 @@ use Illuminate\Http\Request;
 
 class ArtistaController extends Controller
 {
+    public $search = '';
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Artista::get();
+        $artistas = Artista::all();
+        return view('artistas.index',
+        [
+            'artistas' => Artista::where('displayName', 'ilike', '%' . $this->search . '%')
+                ->orderBy('constituentID', 'asc')->paginate(10),
+        ]
+        );
     }
+    
+    // return view(
+    //     'admin.documentos.index-documentos',
+    //     [
+    //         'documentos' => Documento::where('nome_arquivo', 'ilike', '%' . $this->search .  '%')
+    //             ->orderBy('nome_arquivo', 'asc')->paginate(10),
+    //     ]
+    // )->layout('layouts.admin');
+
 
     /**
      * Store a newly created resource in storage.
@@ -55,13 +71,8 @@ class ArtistaController extends Controller
      */
     public function show(Artista $artista, string|int $constituentID)
     {
-        $artist = Artista::find($constituentID);
-        // dump($artist);
-        $req = [$artist->displayName, (' ') , $artist->constituentID, (' '), $artist->nationality];
-        foreach ($req as $artist)
-        {
-            echo $artist;
-        }
+        $artista = Artista::find($constituentID);
+        return view ('artistas.show', compact('artista'));
     }
 
     /**

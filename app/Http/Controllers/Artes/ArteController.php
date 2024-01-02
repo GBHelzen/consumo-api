@@ -9,12 +9,19 @@ use Illuminate\Http\Request;
 
 class ArteController extends Controller
 {
+    public $search = '';
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Arte::get();
+        $artes = Arte::all();
+        return view('artes.index',
+        [
+            'artes' => Arte::where('title', 'ilike', '%' . $this->search . '%')
+                ->orderBy('objectID', 'asc')->paginate(10),
+        ]
+        );
     }
 
     /**
@@ -75,7 +82,8 @@ class ArteController extends Controller
      */
     public function show(Arte $arte, string|int $objectID)
     {
-        return Arte::find($objectID);
+        $arte = Arte::find($objectID);
+        return view ('artes.show', compact('arte'));
     }
 
     /**
