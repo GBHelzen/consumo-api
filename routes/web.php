@@ -38,8 +38,8 @@ Route::get('/artes/create', [ArteController::class, 'store']);
 
 // Controller Artista Livewire
 Route::get('/artistas', [IndexArtistas::class, 'render'])->name('artistas.index');
-Route::get('/artistas', [IndexArtistas::class, 'show'])->name('artistas.show');
+Route::get('/artistas/{constituentID}', [IndexArtistas::class, 'show'])->name('artistas.show');
 
 // Controller Artes Livewire
 Route::get('/artes', [IndexArtes::class, 'render'])->name('artes.index');
-Route::get('/artes', [IndexArtes::class, 'show'])->name('artes.show');
+Route::get('/artes/{objectID}', [IndexArtes::class, 'show'])->name('artes.show');
